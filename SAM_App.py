@@ -131,23 +131,10 @@ def to_excel_buffer(df: pd.DataFrame) -> io.BytesIO:
                     cell.number_format = '0.00'
         #
         # Set column widths
-        column_widths = {
-            'A': 70, # Width in pixels
-            'B': 85,
-            'C': 75,
-            'D': 85,
-            'E': 70,
-            'F': 95,
-            'G': 70,
-            'H': 70,
-            'I': 70,
-            'J': 70,
-            'K': 85,
-            'L': 100,
-            'M': 135,
-        }
+        column_letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M']
+        column_widths  = [70, 85, 75, 85, 70, 95, 70, 70, 70, 70, 85, 100, 135]
         #
-        for col_letter, width in column_widths.items():
+        for col_letter, width in zip(column_letters, column_widths):
             worksheet.column_dimensions[col_letter].width = width/7
     #       
     buffer.seek(0)
@@ -193,4 +180,5 @@ def main():
             st.error("Please enter at least one ticker.")
 
 if __name__ == '__main__':
+
     main()
