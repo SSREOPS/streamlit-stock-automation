@@ -143,6 +143,18 @@ def to_excel_buffer(df: pd.DataFrame) -> io.BytesIO:
 
 # Streamlit App
 def main():
+    # Hide Streamlit header and footer
+    hide_streamlit_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        header {visibility: hidden;}
+        footer {visibility: hidden;}
+        .viewerBadge_container__1QSob {display: none !important;}
+        .st-emotion-cache-1v0mbdj {display: none !important;}
+        .stDeployButton {display:none;}
+        </style>
+    """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.set_page_config(page_title='Live Stock Data', layout='wide')
 
     # 1. Create UI to input ticker symbols
@@ -182,3 +194,4 @@ def main():
 if __name__ == '__main__':
 
     main()
+
